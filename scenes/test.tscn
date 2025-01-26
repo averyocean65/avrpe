@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://e87tywi4xo5n"]
+
+[ext_resource type="Script" path="res://scripts/phys_body.gd" id="1_0xm4j"]
+[ext_resource type="Script" path="res://scripts/kinematic/throw.gd" id="2_22x72"]
+[ext_resource type="Script" path="res://scripts/kinematic/uniform_motion.gd" id="2_dr0qb"]
+
+[sub_resource type="Resource" id="Resource_kcfpl"]
+script = ExtResource("2_22x72")
+initial_velocity = Vector3(2, 0, 1)
+
+[sub_resource type="Resource" id="Resource_2j0ec"]
+script = ExtResource("2_dr0qb")
+v0 = Vector3(2, 0, 1)
+
+[node name="Test" type="Node3D"]
+
+[node name="PhysicsBody" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00251675, 1.20725, -0.00727367)
+script = ExtResource("1_0xm4j")
+motion = SubResource("Resource_kcfpl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="PhysicsBody"]
+
+[node name="PhysicsBody2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0483561, 0)
+script = ExtResource("1_0xm4j")
+motion = SubResource("Resource_2j0ec")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="PhysicsBody2"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.93752, -16.5501)
